@@ -18,8 +18,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_base</module>
-        <module>comment_utils</module>
-        <module>spring_security</module>
+<!--        <module>comment_utils</module>-->
+<!--        <module>spring_security</module>-->
         <module>service_base</module>
     </modules>
 

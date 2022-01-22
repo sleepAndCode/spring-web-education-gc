@@ -14,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * Swagger配置类
  */
+//http://localhost:8001/swagger-ui.html#/  swagger默认访问地址
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
