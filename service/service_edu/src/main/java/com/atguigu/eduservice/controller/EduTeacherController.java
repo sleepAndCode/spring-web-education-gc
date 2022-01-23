@@ -3,6 +3,7 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.service.EduTeacherService;
+import com.atguli.commonutils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,17 +32,21 @@ public class EduTeacherController {
     //rest风格
     @GetMapping("findAll")
     @ApiOperation("查询所有的讲师信息")
-    public List<EduTeacher> findAllTeaacher(){
+    public R findAllTeaacher(){
         List<EduTeacher> list = eduTeacherService.list(null);
-        return list;
+        return R.ok().data("items",list);
     }
 
     //2逻辑删除讲师方法  id需要通过路径传递
     @DeleteMapping("{id}")
     @ApiOperation("假删除讲师")
-    public Boolean removeTeacher(@ApiParam(name = "id",value = "讲师id",required = true ) @PathVariable String id){
+    public R removeTeacher(@ApiParam(name = "id",value = "讲师id",required = true ) @PathVariable String id){
         boolean falg = eduTeacherService.removeById(id);
-        return falg;
+        if (falg) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
 }
