@@ -2,6 +2,8 @@ package com.atguigu.eduservice.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
@@ -33,6 +35,7 @@ public class EduTeacher implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "讲师姓名")
+    @TableField(value="`name`")
     private String name;
 
     @ApiModelProperty(value = "讲师简介")
