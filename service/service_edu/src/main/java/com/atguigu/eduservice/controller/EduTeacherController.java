@@ -122,10 +122,31 @@ public class EduTeacherController {
     }
 
     //添加讲师接口方法
+    @ApiOperation("添加讲师接口方法")
     @PostMapping("addTeacher")
     public R addTeacher(@RequestBody EduTeacher eduTeacher){
         boolean save = eduTeacherService.save(eduTeacher);
         if (save) {
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
+
+    //查询讲师接口方法
+    @ApiOperation("查询讲师接口方法")
+    @GetMapping("getTeacher/{id}")
+    public R addTeacher(@PathVariable String id){
+        EduTeacher eduTeacher = eduTeacherService.getById(id);
+        return R.ok().data("teacher", eduTeacher);
+    }
+
+    //修改讲师接口方法
+    @ApiOperation("修改讲师接口方法")
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@RequestBody EduTeacher eduTeacher){
+        boolean flag = eduTeacherService.updateById(eduTeacher);
+        if (flag) {
             return R.ok();
         }else {
             return R.error();
