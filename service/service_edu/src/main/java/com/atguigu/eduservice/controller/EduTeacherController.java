@@ -4,13 +4,16 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.service.EduTeacherService;
 import com.atguli.commonutils.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -49,5 +52,32 @@ public class EduTeacherController {
         }
     }
 
+    /**
+     * @title pageListTeacher
+     * @description 分页查询
+     * @author admin
+     * @updateTime 2022/1/23 15:08
+     * @throws
+     */
+    @ApiOperation("分页讲师列表")
+    @GetMapping("pageTeacher/{current}/{limit}")
+    public  R pageListTeacher(@PathVariable long current,@PathVariable long limit) {
+
+        //创建page对象
+        Page<EduTeacher> pagerTeacher = new Page<>(current,limit);
+        //调用方法实现分页
+        //调用方法的时候会把分页所有的数据封装到pageTeacher里面
+        eduTeacherService.page(pagerTeacher, null);
+
+        long total = pagerTeacher.getTotal();//总页数
+        List<EduTeacher> records = pagerTeacher.getRecords();
+//        Map map = new HashMap();
+//        map.put("total", total);
+//        map.put("rows", records);
+//        return R.ok().data(map);
+
+        //也可以用链接写法
+        return R.ok().data("total",total).data("rows",records);
+    }
 }
 
