@@ -120,5 +120,16 @@ public class EduTeacherController {
         List<EduTeacher> records = pageTeacher.getRecords();
         return R.ok().data("total", total).data("rows", records);
     }
+
+    //添加讲师接口方法
+    @PostMapping("addTeacher")
+    public R addTeacher(@RequestBody EduTeacher eduTeacher){
+        boolean save = eduTeacherService.save(eduTeacher);
+        if (save) {
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
 }
 
