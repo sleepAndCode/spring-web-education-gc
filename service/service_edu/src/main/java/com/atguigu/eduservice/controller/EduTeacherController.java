@@ -4,6 +4,7 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQuery;
 import com.atguigu.eduservice.service.EduTeacherService;
+import com.atguigu.servicebase.exceptionhandler.GuliException;
 import com.atguli.commonutils.R;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -136,7 +137,13 @@ public class EduTeacherController {
     //查询讲师接口方法
     @ApiOperation("查询讲师接口方法")
     @GetMapping("getTeacher/{id}")
-    public R addTeacher(@PathVariable String id){
+    public R getTeacher(@PathVariable String id){
+        //自定义异常
+//        try {
+//            int a = 1 / 0;
+//        } catch (Exception e) {
+//            throw new GuliException(20001, "guli自定义异常");
+//        }
         EduTeacher eduTeacher = eduTeacherService.getById(id);
         return R.ok().data("teacher", eduTeacher);
     }

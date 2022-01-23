@@ -22,9 +22,10 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 <!--        引入包才可以用对应包里的东西-->
+<!--        因为在service_base里引用了common-utils 这里就不需要引用了 依赖传递了-->
         <dependency>
             <groupId>com.atguigu</groupId>
-            <artifactId>common-utils</artifactId>
+            <artifactId>common_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
